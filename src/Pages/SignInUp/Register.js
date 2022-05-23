@@ -3,6 +3,7 @@ import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-fi
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
+import Loading from '../../Shared/Loading';
 
 const Register = () => {
     const [
@@ -16,6 +17,7 @@ const Register = () => {
 
     let setError
 
+    
     const handleSubmit = event => {
         // const name = event.target.name.value
         event.preventDefault()
@@ -24,6 +26,12 @@ const Register = () => {
 
         createUserWithEmailAndPassword(email, password)
         toast.success('You are Registered successfully')
+    }
+if(user || gUser){
+    
+}
+    if(loading || gLoading){
+        return <Loading></Loading>
     }
     if (error || gError) {
         setError = <p>Error: {error?.message}</p>

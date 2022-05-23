@@ -8,11 +8,11 @@ const Login = () => {
 
     const [
         signInWithEmailAndPassword,
-        user,
+        
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
-    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+    const [signInWithGoogle,  gLoading, gError] = useSignInWithGoogle(auth);
 
     let setError
 
