@@ -17,7 +17,8 @@ const Register = () => {
     let setError
 
     const handleSubmit = event => {
-        const name = event.target.name.value
+        // const name = event.target.name.value
+        event.preventDefault()
         const email = event.target.email.value
         const password = event.target.password.value
 
@@ -51,7 +52,7 @@ const Register = () => {
                         <input type="password" name='password' placeholder="Type here" class="input input-bordered input-primary w-full  my-4" />
                         <br />
                         <p className='text-1xl text-red-500 font-bold'> {setError}</p>
-                        <input className='btn w-full' type="submit" value="Log in " />
+                        <input className='btn w-full' type="submit" value="Register   " />
                     </form>
 
                     <h1>Have an account? <Link to='/login' className='text-2xl text-orange-500'> Log in</Link></h1>
