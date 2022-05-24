@@ -3,6 +3,7 @@ import DashBoard from './Pages/DashBoard/DashBoard';
 import Footer from './Pages/Home/Footer';
 import Home from './Pages/Home/Home';
 import Navbar from './Pages/Home/Navbar';
+import Purchase from './Pages/Purchase/Purchase';
 import Login from './Pages/SignInUp/Login';
 import Register from './Pages/SignInUp/Register';
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<DashBoard />} />
+        <Route path="/purchase" element={<Purchase />} />
 
       </Routes>
 

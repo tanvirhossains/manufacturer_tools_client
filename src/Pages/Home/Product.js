@@ -1,12 +1,14 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 
 const Product = (props) => {
-    const { name, img, price, description } = props.product
+    const { name, img, price, description,quantity } = props.product
 
-    // const navigate =useNavigate()
+    const navigate =useNavigate()
 
-
+const handlePurchase = ()=>{
+    navigate('/purchase')
+}
 
     return (
         <div>
@@ -16,9 +18,9 @@ const Product = (props) => {
                 <div className='m-4'>
                     <h1>Name : {name}</h1>
                     <h1>Price: {price} </h1>
-                    <p><span className='text-2xl font-bold'>Description:</span> {description.slice(0, 60) + '...'}</p>
-                    <button className='btn'>Purchase </button>
-                    <Navigate to='/purchase'>Purchase</Navigate>
+                    <h1>Available Quantity = {quantity}</h1>
+                    {/* <p><span className='text-2xl font-bold'>Description:</span> {description.slice(0, 60) + '...'}</p> */}
+                    <button onClick={handlePurchase} className='btn'>Purchase </button>
                 </div>
             </div>
 
