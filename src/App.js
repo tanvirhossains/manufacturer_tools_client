@@ -21,7 +21,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<DashBoard />} />
-        <Route path="/purchase" element={<Purchase />} />
+        <Route path="/purchase/:toolId" element={<Purchase />} />
 
       </Routes>
 

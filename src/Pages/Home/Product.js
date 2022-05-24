@@ -2,12 +2,12 @@ import React from 'react';
 import {  useNavigate } from 'react-router-dom';
 
 const Product = (props) => {
-    const { name, img, price, description,quantity } = props.product
+    const { _id,name, img, price, description,quantity } = props.product
 
     const navigate =useNavigate()
 
 const handlePurchase = ()=>{
-    navigate('/purchase')
+    navigate(`/purchase/${_id}`)
 }
 
     return (
