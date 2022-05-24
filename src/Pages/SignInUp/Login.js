@@ -1,18 +1,26 @@
 import React from 'react';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth'
-import { Link,  } from 'react-router-dom';
+import { useAuthState, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth'
+import { Link, useLocation, useNavigate, } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../../Shared/Loading';
 const Login = () => {
 
+
+    const [user] = useAuthState(auth);
     const [
         signInWithEmailAndPassword,
-        
+
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
-    const [signInWithGoogle,  gLoading, gError] = useSignInWithGoogle(auth);
+    const [signInWithGoogle, gLoading, gError] = useSignInWithGoogle(auth);
+
+
+    let navigate = useNavigate();
+    let location = useLocation();
+
+    let from = location.state?.from?.pathname || "/";
 
     let setError
 
@@ -24,6 +32,9 @@ const Login = () => {
         signInWithEmailAndPassword(email, password)
         toast.success('You are log in')
 
+    }
+    if (user) {
+        navigate(from, { replace: true });
     }
     if (error || gError) {
         setError = <p>Error: {error?.message}</p>

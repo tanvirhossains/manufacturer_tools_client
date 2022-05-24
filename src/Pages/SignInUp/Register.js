@@ -1,5 +1,6 @@
+import { async } from '@firebase/util';
 import React from 'react';
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
@@ -13,28 +14,32 @@ const Register = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
 
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
     let setError
 
-    
-    const handleSubmit = event => {
-        // const name = event.target.name.value
+
+    const handleSubmit = async (event) => {
+        const name = event.target.name.value
         event.preventDefault()
         const email = event.target.email.value
         const password = event.target.password.value
+        console.log(name, email,password)
 
-        createUserWithEmailAndPassword(email, password)
+        await createUserWithEmailAndPassword(email, password)
+        await updateProfile({ displayName: name })
         toast.success('You are Registered successfully')
     }
-if(user || gUser){
-    
-}
-    if(loading || gLoading){
+    if (user || gUser) {
+console.log(user)
+    }
+    if (loading || gLoading || updating) {
         return <Loading></Loading>
     }
-    if (error || gError) {
-        setError = <p>Error: {error?.message}</p>
+    if (error || gError || updateError) {
+        setError = <p>Error: {error?.message} {gError?.message} {updateError?.message}</p>
     }
 
     return (
