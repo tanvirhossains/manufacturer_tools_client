@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
 const Purchase = () => {
     const { toolId } = useParams()
     const [user] = useAuthState(auth)
     const {
-        register, handleSubmit, watch, formState: { errors } } = useForm();
+        register, handleSubmit, formState: { errors } } = useForm();
 
 
-    console.log(user)
     const [tool, setTool] = useState({})
     useEffect(() => {
         fetch(`http://localhost:5000/tools/${toolId}`)
@@ -23,7 +23,9 @@ const Purchase = () => {
     const { name, img, quantity, minOrder } = tool
 
     const onSubmit = (data) => {
-        alert(JSON.stringify(data));
+        // toast(JSON.stringify(data));
+        console.log(data)
+        toast.success(`you order ${data.order} pcs of ${name} `)
     }
     // const order =
     // if (quantity < )
@@ -34,7 +36,7 @@ const Purchase = () => {
 
             <div className='flex justify-between '>
                 <div className=''>
-                    <div className='card w-[500px] border h-screen'>
+                    <div className='card w-[500px] border h-[500px]'>
                         <img className='h-[300px]' src={img} alt="" />
 
                         <div className='m-4'>
@@ -50,30 +52,26 @@ const Purchase = () => {
                         <div class="card-body">
                             <h2 class=" text-center text-indigo-700 font-bold text-2xl"> User Information</h2>
 
-                            <form action="" onSubmit={handleSubmit(onSubmit)}>
+                            <form action="" className='grid grid-cols-1 gap-4' onSubmit={handleSubmit(onSubmit)}>
+
                                 <input type="text" placeholder="Type here" disabled value={user?.displayName} class="input input-bordered w-full max-w-xs" />
                                 <input type="text" placeholder="Type here" disabled value={user?.email} class="input input-bordered w-full max-w-xs" />
                                 <input type="text" placeholder="Your Address" class="input input-bordered w-full max-w-xs" />
-                                <input type="phone" placeholder="Phone Number" class="input input-bordered w-full max-w-xs"
-                                {...register("phone", {
-                                    required: true,
-                                })}
-                                 />
-                                 {errors.phone?.type === 'required' && <p>Please give a Phone number</p>}
-                                
-
-
-                                <input placeholder="order" class="input input-bordered w-full max-w-xs"
-                                    {...register("number", {
+                                <input type="number" placeholder="Phone Number" name='number' class="input input-bordered w-full max-w-xs"
+                                    {...register("phone", {
+                                        required: true,
+                                    })}
+                                />
+                                {errors.phone?.type === 'required' && <p className='text-red-500 font-bold'>Please give a Phone number</p>}
+                                <input placeholder="order" type='number' name='number' class="input input-bordered w-full max-w-xs"
+                                    {...register("order", {
                                         required: true,
                                         min: minOrder,
                                         max: quantity,
-
-                                    })}
-                                />
-                                {errors?.number?.type === "required" && <p>This field is required</p>}
-                                {errors?.number?.type === "min" && (<p>please order Minimum {minOrder}</p>)}
-                                {errors?.number?.type === "max" && (<p>product {quantity}</p>)}
+                                    })} />
+                                {errors?.order?.type === "required" && <p className='text-red-500 font-bold' >This field is required</p>}
+                                {errors?.order?.type === "min" && (<p className='text-red-500 font-bold'>please order Minimum {minOrder}</p>)}
+                                {errors?.order?.type === "max" && (<p className='text-red-500 font-bold'>We Have Only {quantity} pcs</p>)}
 
                                 <input type="submit" value="Order now " />
                             </form>

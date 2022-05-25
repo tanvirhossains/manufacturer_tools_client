@@ -10,13 +10,15 @@ import Purchase from './Pages/Purchase/Purchase';
 import Login from './Pages/SignInUp/Login';
 import Register from './Pages/SignInUp/Register';
 import RequireAuth from './RequireAuth/RequireAuth';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <div className="App">
       <Navbar></Navbar>
 
-
+      <ToastContainer />
 
       <Routes>
         <Route path="/" element={<Home />} />

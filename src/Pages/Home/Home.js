@@ -5,10 +5,10 @@ import Reviews from './Reviews';
 
 const Home = () => {
     return (
-        <div className='mx-5'>
+        <div className='lg:mx-10  container'>
             <Banner></Banner>
             <Products></Products>
-            <Reviews></Reviews>
+            <Reviews ></Reviews>
         </div>
     );
 };

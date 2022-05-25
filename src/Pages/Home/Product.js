@@ -12,7 +12,7 @@ const Product = (props) => {
 
     return (
         <div>
-            <div className='border'>
+            <div className='border md:m-4'>
                 <img src={img} alt="" />
 
                 <div className='m-4'>
