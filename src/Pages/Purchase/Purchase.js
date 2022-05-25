@@ -11,7 +11,9 @@ const Purchase = () => {
     const {
         register, handleSubmit, formState: { errors } } = useForm();
 
+ 
 
+   
     const [tool, setTool] = useState({})
     useEffect(() => {
         fetch(`http://localhost:5000/tools/${toolId}`)
@@ -33,6 +35,8 @@ const Purchase = () => {
     return (
         <div className='container mx-7'>
             <h1 className='text-3xl text-cyan-500 font-bold text-center m-5'>Purchase page</h1>
+
+           
 
             <div className='flex justify-between '>
                 <div className=''>

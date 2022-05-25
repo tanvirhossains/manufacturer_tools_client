@@ -1,7 +1,7 @@
 import { signOut } from 'firebase/auth';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 const Navbar = () => {
@@ -11,6 +11,9 @@ const Navbar = () => {
         signOut(auth)
 
     }
+    var ema = user?.displayName;
+    var initials = ema?.charAt(0)
+
     const navLink = <>
         <NavLink to='/'>Home</NavLink>
         <NavLink to='/blogs'>Blogs</NavLink>
@@ -45,6 +48,7 @@ const Navbar = () => {
                         </li>
                     </ul>
                 </div>
+
                 <div class="navbar-end">
                     <label for="tools-dashboard" tabindex="1" class="btn btn-ghost lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
@@ -52,6 +56,28 @@ const Navbar = () => {
                     </label>
                     {/* <label class="btn btn-primary drawer-button lg:hidden">Open drawer</label> */}
                 </div>
+               <div className='flex'> {user?.displayName}</div>
+                {user && <div class="dropdown p-4">
+                    <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+                        <div class="">
+                          
+                            <div>
+                                {user?.photoURL ? <img className='rounded-full' src={user.photoURL} alt='' /> : <p className='border font-bold w-10  flex justify-center  items-center rounded-full bg-green-800 text-white  text-2xl uppercase'><div className=' '>
+                                    <text>{initials}</text></div></p>}
+                            </div>
+                        </div>
+                    </label>
+                    <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                        <li>
+                            <a class="justify-between" >
+                                <Link to='/dashboard'> Profile</Link>
+                                <span class="badge">New</span>
+                            </a>
+                        </li>
+
+                        <li><a onClick={() => signOut(auth)}>Logout</a></li>
+                    </ul>
+                </div>}
             </div>
         </div>
     );

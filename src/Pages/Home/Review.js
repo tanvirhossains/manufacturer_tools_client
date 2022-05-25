@@ -6,7 +6,7 @@ const Review = ({ review }) => {
     return (
 
         <div>
-            <div className=''>
+            <div className='mb-5'>
                 <div class="card  bg-base-100 shadow-xl">
                     <div class="card-body">
                         <p>{customerReview}</p>

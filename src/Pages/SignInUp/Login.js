@@ -9,11 +9,7 @@ const Login = () => {
 
     const [user] = useAuthState(auth);
     const [
-        signInWithEmailAndPassword,
-
-        loading,
-        error,
-    ] = useSignInWithEmailAndPassword(auth);
+        signInWithEmailAndPassword, loading, error,] = useSignInWithEmailAndPassword(auth);
     const [signInWithGoogle, gLoading, gError] = useSignInWithGoogle(auth);
 
 
