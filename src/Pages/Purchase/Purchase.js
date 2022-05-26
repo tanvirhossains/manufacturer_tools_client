@@ -47,7 +47,13 @@ const Purchase = () => {
         })
             .then(res => res.json())
             .then(value => {
-                toast.success('Data is Delivered to Database')
+                if(value.success){
+                    toast.success(`Your order for ${name} is delivered`)
+                }
+                else{
+                    toast.error("You already order ")
+                }
+                console.log(value)
             })
 
     }
