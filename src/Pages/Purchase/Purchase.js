@@ -8,13 +8,11 @@ import auth from '../../firebase.init';
 const Purchase = () => {
     const { toolId } = useParams()
     const [user] = useAuthState(auth)
-    const {
-        register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
- 
 
-   
     const [tool, setTool] = useState({})
+
     useEffect(() => {
         fetch(`http://localhost:5000/tools/${toolId}`)
             .then(res => res.json())
@@ -22,12 +20,36 @@ const Purchase = () => {
     }, [])
 
 
-    const { name, img, quantity, minOrder } = tool
-
+    const { name, img, quantity, minOrder, _id } = tool
+    console.log(_id)
     const onSubmit = (data) => {
         // toast(JSON.stringify(data));
         console.log(data)
-        toast.success(`you order ${data.order} pcs of ${name} `)
+        toast.success(`you order ${data.quantity} pcs  ${name} `)
+
+        const order = {
+            id: _id,
+            toolName: name,
+            toolImg: img,
+            userName: user.displayName,
+            userEmail: user.email,
+            quantity: data.quantity,
+            address: data.address,
+            phone: data.phone
+
+        }
+        fetch('http://localhost:5000/order', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(order)
+        })
+            .then(res => res.json())
+            .then(value => {
+                toast.success('Data is Delivered to Database')
+            })
+
     }
     // const order =
     // if (quantity < )
@@ -36,7 +58,7 @@ const Purchase = () => {
         <div className='container mx-7'>
             <h1 className='text-3xl text-cyan-500 font-bold text-center m-5'>Purchase page</h1>
 
-           
+
 
             <div className='flex justify-between '>
                 <div className=''>
@@ -56,28 +78,47 @@ const Purchase = () => {
                         <div class="card-body">
                             <h2 class=" text-center text-indigo-700 font-bold text-2xl"> User Information</h2>
 
-                            <form action="" className='grid grid-cols-1 gap-4' onSubmit={handleSubmit(onSubmit)}>
-
+                            <form action="" className='grid grid-cols-1 ' onSubmit={handleSubmit(onSubmit)}>
+                                <label className='label'>
+                                    <span className='font-bold '>Name</span>
+                                </label>
                                 <input type="text" placeholder="Type here" disabled value={user?.displayName} class="input input-bordered w-full max-w-xs" />
+                                <label className='label'>
+                                    <span className='font-bold '>Email </span>
+                                </label>
                                 <input type="text" placeholder="Type here" disabled value={user?.email} class="input input-bordered w-full max-w-xs" />
-                                <input type="text" placeholder="Your Address" class="input input-bordered w-full max-w-xs" />
+                                <label className='label'>
+                                    <span className='font-bold '>Address</span>
+                                </label>
+                                <input type="text" placeholder="Your Address " name='address' class="input input-bordered w-full max-w-xs"
+                                    {...register("address", {
+                                        required: true,
+                                    })}
+                                />
+                                {errors.address?.type === 'required' && <p className='text-red-500 font-bold'>Please give Your Address !!</p>}
+                                <label className='label'>
+                                    <span className='font-bold '>Phone Number</span>
+                                </label>
                                 <input type="number" placeholder="Phone Number" name='number' class="input input-bordered w-full max-w-xs"
                                     {...register("phone", {
                                         required: true,
                                     })}
                                 />
                                 {errors.phone?.type === 'required' && <p className='text-red-500 font-bold'>Please give a Phone number</p>}
-                                <input placeholder="order" type='number' name='number' class="input input-bordered w-full max-w-xs"
-                                    {...register("order", {
+                                <label className='label'>
+                                    <span className='font-bold '>Tools Quantity</span>
+                                </label>
+                                <input placeholder="Number of Product" type='number' name='quantity' class="input input-bordered w-full max-w-xs"
+                                    {...register("quantity", {
                                         required: true,
                                         min: minOrder,
                                         max: quantity,
                                     })} />
-                                {errors?.order?.type === "required" && <p className='text-red-500 font-bold' >This field is required</p>}
-                                {errors?.order?.type === "min" && (<p className='text-red-500 font-bold'>please order Minimum {minOrder}</p>)}
-                                {errors?.order?.type === "max" && (<p className='text-red-500 font-bold'>We Have Only {quantity} pcs</p>)}
+                                {errors?.quantity?.type === "required" && <p className='text-red-500 font-bold' >This field is required</p>}
+                                {errors?.quantity?.type === "min" && (<p className='text-red-500 font-bold'>please order Minimum {minOrder}</p>)}
+                                {errors?.quantity?.type === "max" && (<p className='text-red-500 font-bold'>We Have Only {quantity} pcs</p>)}
 
-                                <input type="submit" value="Order now " />
+                                <input type="submit" className='btn mt-4' value="Order now " />
                             </form>
 
                         </div>

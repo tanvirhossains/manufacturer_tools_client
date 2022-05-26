@@ -24,7 +24,7 @@ const Navbar = () => {
 
     return (
         <div>
-            <div class="navbar bg-base-100">
+            <div class="navbar bg-slate-500">
                 <div class="navbar-start">
                     <div class="dropdown">
                         <label tabindex="0" class="btn btn-ghost lg:hidden">
@@ -56,18 +56,19 @@ const Navbar = () => {
                     </label>
                     {/* <label class="btn btn-primary drawer-button lg:hidden">Open drawer</label> */}
                 </div>
-               <div className='flex'> {user?.displayName}</div>
+                <div className='flex'> {user?.displayName}</div>
                 {user && <div class="dropdown p-4">
                     <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                         <div class="">
-                          
+
                             <div>
                                 {user?.photoURL ? <img className='rounded-full' src={user.photoURL} alt='' /> : <p className='border font-bold w-10  flex justify-center  items-center rounded-full bg-green-800 text-white  text-2xl uppercase'><div className=' '>
                                     <text>{initials}</text></div></p>}
                             </div>
                         </div>
                     </label>
-                    <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                    <ul tabindex="3" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-slate-600 text-white rounded-box w-52">
+                        <li> {user?.displayName}</li>
                         <li>
                             <a class="justify-between" >
                                 <Link to='/dashboard'> Profile</Link>
