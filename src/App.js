@@ -12,6 +12,7 @@ import Register from './Pages/SignInUp/Register';
 import RequireAuth from './RequireAuth/RequireAuth';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+// import './App.css';
 
 function App() {
   return (

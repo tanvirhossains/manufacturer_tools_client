@@ -5,14 +5,13 @@ import { Link, NavLink } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 const Navbar = () => {
-    const [user, loading, error] = useAuthState(auth);
+    const [user] = useAuthState(auth);
 
     const handleSignOut = () => {
         signOut(auth)
-
     }
-    var ema = user?.displayName;
-    var initials = ema?.charAt(0)
+    var userName = user?.displayName;
+    var initials = userName?.charAt(0)
 
     const navLink = <>
         <NavLink to='/'>Home</NavLink>
@@ -31,7 +30,7 @@ const Navbar = () => {
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
 
                         </label>
-                        <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                        <ul tabindex="0" class="menu menu-compact dropdown-content mt-2 p-2 shadow bg-base-100 rounded-box w-52">
                             <li>
                                 {navLink}
 
@@ -62,7 +61,7 @@ const Navbar = () => {
                         <div class="">
 
                             <div>
-                                {user?.photoURL ? <img className='rounded-full' src={user.photoURL} alt='' /> : <p className='border font-bold w-10  flex justify-center  items-center rounded-full bg-green-800 text-white  text-2xl uppercase'><div className=' '>
+                                {user?.photoURL ? <img className='rounded-full' src={user.photoURL} alt='' /> : <p className='border font-bold w-10 h-10 flex justify-center  items-center rounded-full bg-green-800 text-white  text-3xl uppercase'><div className=' '>
                                     <text>{initials}</text></div></p>}
                             </div>
                         </div>

@@ -1,23 +1,26 @@
 [
     {
-        "name": "Tanvir",
+        "name": "Tanvir Hossain",
         "email": "tanvir@gmail.com",
+        "tool":"Shovel",
         "customerReview": "This is useful for the mechanic purpose and most of the time we use to reduce the more task and very useful",
-        "data": "24 may 22",
+        "date": "24 may 22",
         "img": "https://i.ibb.co/zQHDzk9/tanvir-1.jpg"
     },
     {
         "name": "Abdullah",
         "email": "abdullah@gmail.com",
+        "tool":"Shovel",
         "customerReview": "This is useful for the mechanic purpose and most of the time we use to reduce the more task and very useful",
-        "data": "23 may 22",
+        "date": "23 may 22",
         "img": "https://i.ibb.co/zQHDzk9/tanvir-1.jpg"
     },
     {
         "name": "Shawon",
         "email": "shawon@gmail.com",
+        "tool":"Shovel",
         "customerReview": "This is useful for the mechanic purpose and most of the time we use to reduce the more task and very useful",
-        "data": "23 may 22",
+        "date": "23 may 22",
         "img": "https://i.ibb.co/grptf9F/tanvir.jpg"
     }
 ]

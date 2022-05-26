@@ -11,8 +11,9 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 const MyProfile = () => {
     const [user] = useAuthState(auth)
 
-    var ema = user?.displayName;
-    var initials = ema?.charAt(0)
+    var userName = user?.displayName;
+    var initials = userName?.charAt(0)
+
     return (
         <div>
             <h1 className='text-center text-3xl font-bold text-teal-500 uppercase my-5'>My Profile</h1>
@@ -21,7 +22,7 @@ const MyProfile = () => {
                 <div>
                     <div className='flex justify-center items-center'>
                         <div>
-                            {user?.photoURL ? <img className='lg:w-64 md:w-48 rounded-full' src={user.photoURL} alt='' /> : <p className='border font-bold lg:w-64  flex justify-center  items-center rounded-full bg-green-800 text-white  text-2xl uppercase'><div className=' '>
+                            {user?.photoURL ? <img className='lg:w-64 md:w-48 rounded-full' src={user.photoURL} alt='' /> : <p className='border font-bold lg:w-64 md:w-48 md:h h-64 flex justify-center  items-center rounded-full bg-green-800 text-white  text-9xl uppercase'><div className=' '>
                                 <text>{initials}</text></div></p>}
                             <form action="">
                                 <div class="form-control w-full max-w-xs">
