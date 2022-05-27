@@ -12,6 +12,7 @@ import Register from './Pages/SignInUp/Register';
 import RequireAuth from './RequireAuth/RequireAuth';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import AddProduct from './Pages/DashBoard/AddProduct';
 // import './App.css';
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           <Route index element={<MyProfile />} />
           <Route path='addReview' element={<AddReview />} />
           <Route path='myOrders' element={<MyOrders />} />
+          <Route path='addProduct' element={<AddProduct />} />
         </Route>
       </Routes>
 
