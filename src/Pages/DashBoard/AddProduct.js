@@ -5,9 +5,7 @@ import { toast } from 'react-toastify';
 const AddProduct = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-
     const onSubmit = data => {
-        console.log(data)
         const review = {
             name: data.tool,
             price: parseInt(data.price),
@@ -16,7 +14,6 @@ const AddProduct = () => {
             description: data.description,
             img: data.imgUrl
         }
-        // const date = new Date()
 
         fetch(`http://localhost:5000/tools`, {
             method: 'POST',
@@ -28,12 +25,10 @@ const AddProduct = () => {
             .then(res => res.json())
             .then(value => {
                 if (value.success) {
-                    toast.success(`you send a review `)
+                    toast.success(`you Add a product to the database `)
                 }
             })
-
     }
-
 
     return (
         <div className='flex justify-center items-center'>

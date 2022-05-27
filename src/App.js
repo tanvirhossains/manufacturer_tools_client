@@ -13,6 +13,7 @@ import RequireAuth from './RequireAuth/RequireAuth';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AddProduct from './Pages/DashBoard/AddProduct';
+import ManageOrder from './Pages/DashBoard/ManageOrder';
 // import './App.css';
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
           <Route path='addReview' element={<AddReview />} />
           <Route path='myOrders' element={<MyOrders />} />
           <Route path='addProduct' element={<AddProduct />} />
+          <Route path='manageOrder' element={<ManageOrder />} />
         </Route>
       </Routes>
 
