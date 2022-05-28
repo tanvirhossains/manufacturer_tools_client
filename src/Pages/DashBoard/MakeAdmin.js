@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
+import Loading from '../../Shared/Loading';
 
 const MakeAdmin = () => {
-    const [usersEmail, setUsersEmail] = useState([])
-    useEffect(() => {
-        fetch(`http://localhost:5000/user`)
-            .then(response => response.json())
-            .then(value => setUsersEmail(value))
-    }, [])
+
+    const{data: usersEmail , isLoading} = useQuery('usersEmail', () => fetch(`http://localhost:5000/user`).then(res => res.json()))
+
+    if(isLoading){
+        return<Loading></Loading>
+    }
+    // const [usersEmail, setUsersEmail] = useState([])
+    // useEffect(() => {
+    //     fetch(`http://localhost:5000/user`)
+    //         .then(response => response.json())
+    //         .then(value => setUsersEmail(value))
+    // }, [])
     return (
         <div>
             <h1 className='text-center font-bold text-2xl my-5'>Make Admin Page</h1>
@@ -21,7 +29,7 @@ const MakeAdmin = () => {
                         </tr>
                     </thead>
                     <tbody>
-                      
+
                         {
                             usersEmail.map((email, index) => <tr>
                                 <th>{index + 1}</th>

@@ -15,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import AddProduct from './Pages/DashBoard/AddProduct';
 import ManageOrder from './Pages/DashBoard/ManageOrder';
 import MakeAdmin from './Pages/DashBoard/MakeAdmin';
+
 // import './App.css';
 
 function App() {
