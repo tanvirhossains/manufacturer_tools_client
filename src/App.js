@@ -14,6 +14,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AddProduct from './Pages/DashBoard/AddProduct';
 import ManageOrder from './Pages/DashBoard/ManageOrder';
+import MakeAdmin from './Pages/DashBoard/MakeAdmin';
 // import './App.css';
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
           <Route path='myOrders' element={<MyOrders />} />
           <Route path='addProduct' element={<AddProduct />} />
           <Route path='manageOrder' element={<ManageOrder />} />
+          <Route path='makeAdmin' element={<MakeAdmin />} />
         </Route>
       </Routes>
 

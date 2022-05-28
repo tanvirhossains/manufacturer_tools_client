@@ -3,6 +3,7 @@ import { useAuthState, useSignInWithEmailAndPassword, useSignInWithGoogle } from
 import { Link, useLocation, useNavigate, } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
+import useEmail from '../../Hooks/useEmail';
 import Loading from '../../Shared/Loading';
 const Login = () => {
 
@@ -11,7 +12,7 @@ const Login = () => {
     const [
         signInWithEmailAndPassword, loading, error,] = useSignInWithEmailAndPassword(auth);
     const [signInWithGoogle, gLoading, gError] = useSignInWithGoogle(auth);
-
+    const [token] = useEmail()
 
     let navigate = useNavigate();
     let location = useLocation();

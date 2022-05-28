@@ -1,9 +1,10 @@
 import { async } from '@firebase/util';
 import React from 'react';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
+import useEmail from '../../Hooks/useEmail';
 import Loading from '../../Shared/Loading';
 
 const Register = () => {
@@ -17,23 +18,24 @@ const Register = () => {
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+    const [token, SetToken] = useEmail(user || gUser)
 
+    const navigate = useNavigate()
     let setError
-
 
     const handleSubmit = async (event) => {
         const name = event.target.name.value
         event.preventDefault()
         const email = event.target.email.value
         const password = event.target.password.value
-        console.log(name, email,password)
+
 
         await createUserWithEmailAndPassword(email, password)
         await updateProfile({ displayName: name })
         toast.success('You are Registered successfully')
     }
-    if (user || gUser) {
-console.log(user)
+    if (token) {
+        navigate('/')
     }
     if (loading || gLoading || updating) {
         return <Loading></Loading>
