@@ -6,7 +6,7 @@ const useEmail = (user) => {
 
         const userEmail = user?.user?.email
         const newUser = {
-            new: userEmail
+            email: userEmail
         }
         if (userEmail) {
             fetch(`http://localhost:5000/user/${userEmail}`, {
