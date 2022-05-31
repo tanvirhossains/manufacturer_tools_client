@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import React from "react"
 import AddReview from './Pages/DashBoard/AddReview';
 import DashBoard from './Pages/DashBoard/DashBoard';
 import MyOrders from './Pages/DashBoard/MyOrders';
@@ -15,6 +16,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import AddProduct from './Pages/DashBoard/AddProduct';
 import ManageOrder from './Pages/DashBoard/ManageOrder';
 import MakeAdmin from './Pages/DashBoard/MakeAdmin';
+import Notfound from './Pages/NotFound/Notfound';
+import Blogs from './Pages/Blogs/Blogs';
+import MyPortfolio from './Pages/Blogs/MyPortfolio';
 
 // import './App.css';
 
@@ -45,6 +49,10 @@ function App() {
           <Route path='manageOrder' element={<ManageOrder />} />
           <Route path='makeAdmin' element={<MakeAdmin />} />
         </Route>
+
+        <Route path="/blogs" element={<Blogs />} />
+        <Route path="/myPortfolio" element={<MyPortfolio />} />
+        <Route path="*" element={<Notfound />} />
       </Routes>
 
 

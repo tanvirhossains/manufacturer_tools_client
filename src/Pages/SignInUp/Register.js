@@ -41,7 +41,7 @@ const Register = () => {
         return <Loading></Loading>
     }
     if (error || gError || updateError) {
-        setError = <p>Error: {error?.message} {gError?.message} {updateError?.message}</p>
+        // setError = <p>Error: {error?.message} {gError?.message} {updateError?.message}</p>
     }
 
     return (

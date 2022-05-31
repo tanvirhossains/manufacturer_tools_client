@@ -15,7 +15,7 @@ const AddProduct = () => {
             img: data.imgUrl
         }
 
-        fetch(`http://localhost:5000/tools`, {
+        fetch(`https://guarded-scrubland-85783.herokuapp.com/tools`, {
             method: 'POST',
             headers: {
                 "Content-type": 'application/json'
@@ -34,7 +34,7 @@ const AddProduct = () => {
         <div className='flex justify-center items-center'>
             <div>
                 <h1>Add a review</h1>
-                <form action="" className=' ' onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(onSubmit)}>
 
 
                     <label className='label'>

@@ -1,3 +1,4 @@
+// import { reset } from 'nodemon';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
@@ -14,7 +15,7 @@ const Purchase = () => {
     const [tool, setTool] = useState({})
 
     useEffect(() => {
-        fetch(`http://localhost:5000/tools/${toolId}`)
+        fetch(`https://guarded-scrubland-85783.herokuapp.com/tools/${toolId}`)
             .then(res => res.json())
             .then(data => setTool(data))
     }, [])
@@ -38,7 +39,7 @@ const Purchase = () => {
             phone: data.phone
 
         }
-        fetch('http://localhost:5000/order', {
+        fetch('https://guarded-scrubland-85783.herokuapp.com/order', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -49,6 +50,7 @@ const Purchase = () => {
             .then(value => {
                 if(value.success){
                     toast.success(`Your order for ${name} is delivered`)
+                    // reset()
                 }
                 else{
                     toast.error("You already order ")

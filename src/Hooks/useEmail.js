@@ -9,7 +9,7 @@ const useEmail = (user) => {
             email: userEmail
         }
         if (userEmail) {
-            fetch(`http://localhost:5000/user/${userEmail}`, {
+            fetch(`https://guarded-scrubland-85783.herokuapp.com/user/${userEmail}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

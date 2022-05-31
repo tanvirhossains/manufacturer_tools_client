@@ -16,6 +16,7 @@ const Navbar = () => {
     const navLink = <>
         <NavLink to='/'>Home</NavLink>
         <NavLink to='/blogs'>Blogs</NavLink>
+        <NavLink to='/myPortfolio'>My Portfolio</NavLink>
 
         {user ? <p className='' onClick={handleSignOut}>Sign Out</p> : <NavLink to='/login'>Log in</NavLink>}
         {user && <NavLink to='/dashboard'>Dashboard</NavLink>}
@@ -23,7 +24,7 @@ const Navbar = () => {
 
     return (
         <div>
-            <div class="navbar bg-slate-500">
+            <div class="navbar bg-slate-100">
                 <div class="navbar-start">
                     <div class="dropdown">
                         <label tabindex="0" class="btn btn-ghost lg:hidden">
@@ -31,7 +32,7 @@ const Navbar = () => {
 
                         </label>
                         <ul tabindex="0" class="menu menu-compact dropdown-content mt-2 p-2 shadow bg-base-100 rounded-box w-52">
-                            <li>
+                            <li className='text-white'>
                                 {navLink}
 
                             </li>

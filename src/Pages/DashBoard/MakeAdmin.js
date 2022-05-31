@@ -5,7 +5,7 @@ import AdminRow from './AdminRow';
 
 const MakeAdmin = () => {
 
-    const { data: usersEmail, isLoading , refetch} = useQuery('usersEmail', () => fetch(`http://localhost:5000/user`).then(res => res.json()))
+    const { data: usersEmail, isLoading , refetch} = useQuery('usersEmail', () => fetch(`https://guarded-scrubland-85783.herokuapp.com/user`).then(res => res.json()))
 
     if (isLoading) {
         return <Loading></Loading>

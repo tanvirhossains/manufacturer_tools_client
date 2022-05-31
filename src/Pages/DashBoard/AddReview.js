@@ -21,7 +21,7 @@ const AddReview = () => {
         }
         // const date = new Date()
 
-        fetch(`http://localhost:5000/reviews`, {
+        fetch(`https://guarded-scrubland-85783.herokuapp.com/reviews`, {
             method: 'POST',
             headers: {
                 "Content-type": 'application/json'
